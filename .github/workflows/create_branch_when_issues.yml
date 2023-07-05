@@ -9,6 +9,7 @@ jobs:
         runs-on: ubuntu-latest
         steps:
             - name: créer la branche de l'issue
+              if: github.head_ref == 'develop'
               run: |
                 git checkout develop
                 git pull origin develop
