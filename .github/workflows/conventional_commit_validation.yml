@@ -11,4 +11,6 @@ jobs:
     runs-on: ubuntu-latest
     steps:
         - uses: actions/checkout@v3
-        - uses: webiny/action-conventional-commits@v1.1.0
+        - name: verifier commit
+          if: (!startsWith(github.event.head_commit.message, 'fix:' ) && !startsWith(github.event.head_commit.message, 'feat:') && !startsWith(github.event.head_commit.message, 'docs:'))
+          run: echo "Vous ne suivez pas les règles des commits conventionnels" && exit 1 
