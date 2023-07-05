@@ -1,0 +1,14 @@
+name: Conventional Commits Validation
+
+on:
+  push:
+    branches:
+      - 'features/*'
+      - 'hotfix/*'
+
+jobs:
+  validateCommits:
+    runs-on: ubuntu-latest
+    steps:
+        - uses: actions/checkout@v2
+        - uses: webiny/action-conventional-commits@v1.1.0
