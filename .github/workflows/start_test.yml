@@ -1,0 +1,4 @@
+name: Start-test-after-pr
+on: 
+    pull_request:
+        
