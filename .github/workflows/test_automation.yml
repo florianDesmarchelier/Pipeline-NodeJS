@@ -7,7 +7,6 @@ on:
 jobs:
     lancement_des_tests:
         strategy:
-            fail-fast: true
             matrix:
                 node-version: [14, 16]
         runs-on: ubuntu-latest
@@ -18,8 +17,9 @@ jobs:
               uses: actions/setup-node@v3
               with:
                 node-version: ${{matrix.node-version}}
-            - run: npm run test
-            - run: npm run test:coverage > coverage.txt
+            - run: |
+                npm run test
+                npm run test:coverage > coverage.txt
             - name: upload coverage
               uses: actions/upload-artifact@v3
               with:
