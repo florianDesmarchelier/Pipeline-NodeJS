@@ -1,0 +1,22 @@
+name: Automatisation-des-tests
+on:
+    pull_request:
+        branches: 
+            - develop
+
+jobs:
+    lancement_des_tests:
+        strategy:
+            fail-fast: true
+            matrix:
+                node-version: [14,16]
+        runs-on: ubuntu-latest
+        steps:
+            - uses: actions/checkout@v3
+            - name: "Vérifier que la pr provient d'une branche commençant par features/"
+              if: startsWith(github.head_ref, 'features/')
+              uses: actions/setup-node@v3
+              with:
+                node-version: ${{matrix.node-version}}
+            - run: npm run test
+            - run: npm run test:coverage 
